@@ -1,4 +1,4 @@
-package main.java.ru.votingsystem.model;
+package ru.votingsystem.model;
 
 public enum Role {
     ROLE_USER,

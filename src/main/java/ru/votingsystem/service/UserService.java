@@ -1,4 +1,4 @@
-package main.java.ru.votingsystem.service;
+package ru.votingsystem.service;
 
 public class UserService {
 }
