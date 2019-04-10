@@ -1,4 +1,4 @@
 package ru.votingsystem.service;
 
-public interface UserService {
+public interface VoteService {
 }

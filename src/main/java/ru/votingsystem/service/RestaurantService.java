@@ -1,4 +1,4 @@
 package ru.votingsystem.service;
 
-public class RestaurantService {
+public interface RestaurantService {
 }

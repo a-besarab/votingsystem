@@ -2,8 +2,8 @@ package ru.votingsystem.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.votingsystem.model.Restaurant;
+import ru.votingsystem.model.Vote;
 
 @Repository
-public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
+public interface VoteRepository extends JpaRepository<Vote, Integer> {
 }
