@@ -1,25 +1,27 @@
 package ru.votingsystem.model;
 
+import java.util.List;
+
 public class Restaurant extends AbstractNamedEntity {
 
     private String address;
     private String phone;
-    private String url;
+    private List<Dish> dishes;
+    private List<Vote> votes;
+
 
     public Restaurant() {
     }
 
-    public Restaurant(String address, String phone, String url) {
+    public Restaurant(String address, String phone) {
         this.address = address;
         this.phone = phone;
-        this.url = url;
     }
 
-    public Restaurant(int id, String name, String address, String phone, String url) {
+    public Restaurant(int id, String name, String address, String phone) {
         super(id, name);
         this.address = address;
         this.phone = phone;
-        this.url = url;
     }
 
 
@@ -31,19 +33,11 @@ public class Restaurant extends AbstractNamedEntity {
         return phone;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
     public void setAddress(String address) {
         this.address = address;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 }

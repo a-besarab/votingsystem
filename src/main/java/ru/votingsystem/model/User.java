@@ -1,23 +1,27 @@
 package ru.votingsystem.model;
 
 import java.util.List;
-import java.util.Set;
 
 public class User extends AbstractNamedEntity {
     private String email;
     private String password;
     private List<Vote> votes;
-    private Set<Role> roles;
+    private Role role;
 
     public User() {
     }
 
-    public User(Integer id, String name, String email, String password, List<Vote> votes, Set<Role> roles) {
+    public User(String email, String password, Role role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(Integer id, String name, String email, String password, Role role) {
         super(id, name);
         this.email = email;
         this.password = password;
-        this.votes = votes;
-        this.roles = roles;
+        this.role = role;
     }
 
     public void setEmail(String email) {
@@ -32,8 +36,8 @@ public class User extends AbstractNamedEntity {
         this.votes = votes;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public void setRoles(Role role) {
+        this.role = role;
     }
 
     public String getEmail() {
@@ -48,7 +52,7 @@ public class User extends AbstractNamedEntity {
         return votes;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRole() {
+        return role;
     }
 }
