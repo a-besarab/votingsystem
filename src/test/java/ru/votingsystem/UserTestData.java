@@ -23,7 +23,7 @@ public class UserTestData {
 
 
     public static void assertMatch(User actual, User expected) {
-        assertThat(actual).isEqualTo(expected).isEqualToIgnoringGivenFields(expected, "password");
+        assertThat(actual).isEqualTo(expected).isEqualToIgnoringGivenFields(expected, "password", "votes");
     }
 
     public static void assertMatch(Iterable<User> actual, User... expected) {
@@ -31,6 +31,6 @@ public class UserTestData {
     }
 
     public static void assertMatch(Iterable<User> actual, Iterable<User> expected) {
-        assertThat(actual).isEqualTo(expected).usingElementComparatorIgnoringFields("password");
+        assertThat(actual).isEqualTo(expected).usingElementComparatorIgnoringFields("password", "votes");
     }
 }

@@ -1,14 +1,30 @@
 package ru.votingsystem.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
+@Entity
+@Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = {"address", "name"}, name = "restaurant_id_uindex")})
 public class Restaurant extends AbstractNamedEntity {
 
+    @NotBlank
+    @Column(name = "address", nullable = false)
+    @Size(min = 5, max = 200)
     private String address;
-    private String phone;
-    private List<Dish> dishes;
-    private List<Vote> votes;
 
+    @Column(name = "phone")
+    @Size(min = 6, max = 15)
+    private String phone;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @OrderBy("date DESC")
+    private List<Dish> dishes;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")
+    @OrderBy("vote DESC")
+    protected List<Vote> votes;
 
     public Restaurant() {
     }
