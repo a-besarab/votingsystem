@@ -6,7 +6,7 @@ import ru.votingsystem.model.User;
 
 import java.util.List;
 
-import static ru.votingsystem.UserTestData.*;
+import static ru.votingsystem.testdata.UserTestData.*;
 
 
 public class UserServiceTest extends AbstractServiceTest {

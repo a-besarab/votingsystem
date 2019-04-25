@@ -40,6 +40,21 @@ public class Restaurant extends AbstractNamedEntity {
         this.phone = phone;
     }
 
+    public void setDishes(List<Dish> dishes) {
+        this.dishes = dishes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
+    }
+
+    public List<Dish> getDishes() {
+        return dishes;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
 
     public String getAddress() {
         return address;

@@ -1,4 +1,4 @@
-package ru.votingsystem;
+package ru.votingsystem.testdata;
 
 import ru.votingsystem.model.Role;
 import ru.votingsystem.model.User;

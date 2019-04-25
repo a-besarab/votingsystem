@@ -6,8 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import ru.votingsystem.model.Restaurant;
+import ru.votingsystem.model.User;
 import ru.votingsystem.model.Vote;
 
+import java.time.LocalDate;
+import java.util.List;
+
+@Transactional(readOnly = true)
 @Repository
 public interface VoteRepository extends JpaRepository<Vote, Integer> {
 
@@ -19,4 +25,12 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
     @Override
     @Transactional
     Vote save(Vote vote);
+
+    List<Vote> getAllByDateBetween(LocalDate startDate, LocalDate endDate);
+
+    List<Vote> getAllByDate(LocalDate localDate);
+
+    List<Vote> getAllByRestaurantId(Restaurant restaurant);
+
+    List<Vote> getAllByUserId(User user);
 }
