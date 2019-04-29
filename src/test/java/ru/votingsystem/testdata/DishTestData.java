@@ -28,25 +28,25 @@ public class DishTestData {
     public static final int COFFEE4_ID = START_SEQ + 20;
     public static final int CAKE4_ID = START_SEQ + 21;
 
-    public static final Dish COLA1 = new Dish(COLA1_ID, "cola1", 500, LocalDate.parse("2019-04-8"));
-    public static final Dish CHIPS1 = new Dish(CHIPS1_ID, "chips1", 600, LocalDate.parse("2019-04-8"));
-    public static final Dish COFFEE1 = new Dish(COFFEE1_ID, "coffee1", 800, LocalDate.parse("2019-04-8"));
-    public static final Dish CAKE1 = new Dish(CAKE1_ID, "cake1", 900, LocalDate.parse("2019-04-8"));
-    public static final Dish COLA2 = new Dish(COLA2_ID, "cola2", 550, LocalDate.parse("2019-04-9"));
-    public static final Dish CHIPS2 = new Dish(CHIPS2_ID, "chips2", 650, LocalDate.parse("2019-04-9"));
-    public static final Dish COFFEE2 = new Dish(COFFEE2_ID, "coffee2", 750, LocalDate.parse("2019-04-9"));
-    public static final Dish CAKE2 = new Dish(CAKE2_ID, "cake2", 850, LocalDate.parse("2019-04-9"));
-    public static final Dish COLA3 = new Dish(COLA3_ID, "cola3", 950, LocalDate.parse("2019-04-10"));
-    public static final Dish CHIPS3 = new Dish(CHIPS3_ID, "chips3", 650, LocalDate.parse("2019-04-10"));
-    public static final Dish COFFEE3 = new Dish(COFFEE3_ID, "coffee3", 750, LocalDate.parse("2019-04-10"));
-    public static final Dish CAKE3 = new Dish(CAKE3_ID, "cake3", 350, LocalDate.parse("2019-04-10"));
-    public static final Dish COLA4 = new Dish(COLA4_ID, "cola4", 336, LocalDate.parse("2019-04-11"));
-    public static final Dish CHIPS4 = new Dish(CHIPS4_ID, "chips4", 250, LocalDate.parse("2019-04-11"));
-    public static final Dish COFFEE4 = new Dish(COFFEE4_ID, "coffee4", 960, LocalDate.parse("2019-04-11"));
-    public static final Dish CAKE4 = new Dish(CAKE4_ID, "cake4", 660, LocalDate.parse("2019-04-11"));
+    public static final Dish COLA_1 = new Dish(COLA1_ID, "cola1", 500, LocalDate.parse("2019-04-8"));
+    public static final Dish CHIPS_1 = new Dish(CHIPS1_ID, "chips1", 600, LocalDate.parse("2019-04-8"));
+    public static final Dish COFFEE_1 = new Dish(COFFEE1_ID, "coffee1", 800, LocalDate.parse("2019-04-8"));
+    public static final Dish CAKE_1 = new Dish(CAKE1_ID, "cake1", 900, LocalDate.parse("2019-04-8"));
+    public static final Dish COLA_2 = new Dish(COLA2_ID, "cola2", 550, LocalDate.parse("2019-04-9"));
+    public static final Dish CHIPS_2 = new Dish(CHIPS2_ID, "chips2", 650, LocalDate.parse("2019-04-9"));
+    public static final Dish COFFEE_2 = new Dish(COFFEE2_ID, "coffee2", 750, LocalDate.parse("2019-04-9"));
+    public static final Dish CAKE_2 = new Dish(CAKE2_ID, "cake2", 850, LocalDate.parse("2019-04-9"));
+    public static final Dish COLA_3 = new Dish(COLA3_ID, "cola3", 950, LocalDate.parse("2019-04-10"));
+    public static final Dish CHIPS_3 = new Dish(CHIPS3_ID, "chips3", 650, LocalDate.parse("2019-04-10"));
+    public static final Dish COFFEE_3 = new Dish(COFFEE3_ID, "coffee3", 750, LocalDate.parse("2019-04-10"));
+    public static final Dish CAKE_3 = new Dish(CAKE3_ID, "cake3", 350, LocalDate.parse("2019-04-10"));
+    public static final Dish COLA_4 = new Dish(COLA4_ID, "cola4", 336, LocalDate.parse("2019-04-11"));
+    public static final Dish CHIPS_4 = new Dish(CHIPS4_ID, "chips4", 250, LocalDate.parse("2019-04-11"));
+    public static final Dish COFFEE_4 = new Dish(COFFEE4_ID, "coffee4", 960, LocalDate.parse("2019-04-11"));
+    public static final Dish CAKE_4 = new Dish(CAKE4_ID, "cake4", 660, LocalDate.parse("2019-04-11"));
 
-    public static final List<Dish> ALL_DISH = Arrays.asList(COLA1, CHIPS1, COFFEE1, CAKE1, COLA2, CHIPS2, COFFEE2, CAKE2,
-            COLA3, CHIPS3, COFFEE3, CAKE3, COLA4, CHIPS4, COFFEE4, CAKE4);
+    public static final List<Dish> ALL_DISH = Arrays.asList(COLA_1, CHIPS_1, COFFEE_1, CAKE_1, COLA_2, CHIPS_2,
+            COFFEE_2, CAKE_2, COLA_3, CHIPS_3, COFFEE_3, CAKE_3, COLA_4, CHIPS_4, COFFEE_4, CAKE_4);
 
     public static void assertMatch(Dish actual, Dish expected) {
         assertThat(actual).isEqualToIgnoringGivenFields(expected, "restaurant");

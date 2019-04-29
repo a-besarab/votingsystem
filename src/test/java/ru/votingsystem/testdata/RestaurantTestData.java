@@ -12,19 +12,19 @@ import static ru.votingsystem.model.AbstractBaseEntity.START_SEQ;
 public class RestaurantTestData {
 
 
-    private static final int RESTAURANT1_ID = START_SEQ + 2;
-    private static final int RESTAURANT2_ID = START_SEQ + 3;
-    private static final int RESTAURANT3_ID = START_SEQ + 4;
-    private static final int RESTAURANT4_ID = START_SEQ + 5;
+    public static final int RESTAURANT1_ID = START_SEQ + 2;
+    public static final int RESTAURANT2_ID = START_SEQ + 3;
+    public static final int RESTAURANT3_ID = START_SEQ + 4;
+    public static final int RESTAURANT4_ID = START_SEQ + 5;
 
 
-    static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT1_ID, "tuesday",
+    public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT1_ID, "tuesday",
             "address_tuesday", "+7222");
-    static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT2_ID, "wednesday",
+    public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT2_ID, "wednesday",
             "address_wednesday", "+7333");
-    static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT3_ID, "thursday",
+    public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT3_ID, "thursday",
             "address_thursday", "+7444");
-    static final Restaurant RESTAURANT_4 = new Restaurant(RESTAURANT4_ID, "friday",
+    public static final Restaurant RESTAURANT_4 = new Restaurant(RESTAURANT4_ID, "friday",
             "address_friday", "+7555");
 
     private static final List<Restaurant> ALL_RESTAURANTS = Arrays.asList(RESTAURANT_1, RESTAURANT_2,

@@ -12,15 +12,13 @@ public interface VoteService {
 
     void delete(int id) throws NotFoundException;
 
-    Vote save(Vote vote);
+    Vote save(Vote vote, int userId, int restaurantId);
 
     Vote get(int id) throws NotFoundException;
 
-    List<Vote> getAllByDateBetween(LocalDate startDate, LocalDate endDate);
-
     List<Vote> getAllByDate(LocalDate localDate);
 
-    List<Vote> getAllByRestaurantId(Restaurant restaurant);
+    List<Vote> getAllByRestaurantId(int restaurantId);
 
-    List<Vote> getAllByUserId(User user);
+    List<Vote> getAllByUserId(int userId);
 }

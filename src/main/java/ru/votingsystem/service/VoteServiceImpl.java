@@ -15,10 +15,15 @@ import java.util.List;
 public class VoteServiceImpl implements VoteService {
 
     private final VoteRepository voteRepository;
+    private final RestaurantService restaurantService;
+    private final UserService userService;
 
     @Autowired
-    public VoteServiceImpl(VoteRepository voteRepository) {
+    public VoteServiceImpl(VoteRepository voteRepository,
+                           RestaurantService restaurantService, UserService userService) {
         this.voteRepository = voteRepository;
+        this.restaurantService = restaurantService;
+        this.userService = userService;
     }
 
     @Override
@@ -27,18 +32,16 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public Vote save(Vote vote) {
+    public Vote save(Vote vote, int userId, int restaurantId) {
+        vote.setRestaurant(restaurantService.getWithDailyDishes(restaurantId));
+        vote.setUser(userService.get(userId));
         return voteRepository.save(vote);
     }
 
     @Override
     public Vote get(int id) {
-        return voteRepository.getOne(id);
-    }
-
-    @Override
-    public List<Vote> getAllByDateBetween(LocalDate startDate, LocalDate endDate) {
-        return voteRepository.getAllByDateBetween(startDate, endDate);
+        return voteRepository.findById(id).orElseThrow(() ->
+                new NotFoundException("Not found vote with id: " + id));
     }
 
     @Override
@@ -47,12 +50,12 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public List<Vote> getAllByRestaurantId(Restaurant restaurant) {
-        return voteRepository.getAllByRestaurantId(restaurant);
+    public List<Vote> getAllByRestaurantId(int restaurantId) {
+        return voteRepository.getAllByRestaurantId(restaurantId);
     }
 
     @Override
-    public List<Vote> getAllByUserId(User user) {
-        return voteRepository.getAllByUserId(user);
+    public List<Vote> getAllByUserId(int userId) {
+        return voteRepository.getAllByUserId(userId);
     }
 }

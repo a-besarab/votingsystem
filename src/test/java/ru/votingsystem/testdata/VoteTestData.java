@@ -22,17 +22,22 @@ public class VoteTestData {
     public static final int VOTE6_ID = START_SEQ + 27;
     public static final int VOTE7_ID = START_SEQ + 28;
     public static final int VOTE8_ID = START_SEQ + 29;
+    public static final int NEW_VOTE_ID = START_SEQ + 50;
 
-    public static final Vote VOTE1 = new Vote(LocalDate.parse("2019-04-8"), USER, RESTAURANT_1);
-    public static final Vote VOTE2 = new Vote(LocalDate.parse("2019-04-8"), ADMIN, RESTAURANT_1);
-    public static final Vote VOTE3 = new Vote(LocalDate.parse("2019-04-9"), USER, RESTAURANT_3);
-    public static final Vote VOTE4 = new Vote(LocalDate.parse("2019-04-9"), ADMIN, RESTAURANT_4);
-    public static final Vote VOTE5 = new Vote(LocalDate.parse("2019-04-10"), USER, RESTAURANT_2);
-    public static final Vote VOTE6 = new Vote(LocalDate.parse("2019-04-10"), ADMIN, RESTAURANT_2);
-    public static final Vote VOTE7 = new Vote(LocalDate.parse("2019-04-11"), USER, RESTAURANT_3);
-    public static final Vote VOTE8 = new Vote(LocalDate.parse("2019-04-11"), ADMIN, RESTAURANT_4);
 
-    public static final List<Vote> ALL_VOTES = Arrays.asList(VOTE1, VOTE2, VOTE3, VOTE4, VOTE5, VOTE6, VOTE7, VOTE8);
+    public static final Vote VOTE_1 = new Vote(VOTE1_ID, LocalDate.parse("2019-04-08"), USER, RESTAURANT_1);
+    public static final Vote VOTE_2 = new Vote(VOTE2_ID, LocalDate.parse("2019-04-08"), ADMIN, RESTAURANT_1);
+    public static final Vote VOTE_3 = new Vote(VOTE3_ID, LocalDate.parse("2019-04-09"), USER, RESTAURANT_3);
+    public static final Vote VOTE_4 = new Vote(VOTE4_ID, LocalDate.parse("2019-04-09"), ADMIN, RESTAURANT_4);
+    public static final Vote VOTE_5 = new Vote(VOTE5_ID, LocalDate.parse("2019-04-10"), USER, RESTAURANT_2);
+    public static final Vote VOTE_6 = new Vote(VOTE6_ID, LocalDate.parse("2019-04-10"), ADMIN, RESTAURANT_2);
+    public static final Vote VOTE_7 = new Vote(VOTE7_ID, LocalDate.parse("2019-04-11"), USER, RESTAURANT_3);
+    public static final Vote VOTE_8 = new Vote(VOTE8_ID, LocalDate.parse("2019-04-11"), ADMIN, RESTAURANT_4);
+    public static final Vote NEW_VOTE = new Vote(LocalDate.parse("2019-04-12"));
+
+
+    public static final List<Vote> ALL_VOTES = Arrays.asList(VOTE_1, VOTE_2, VOTE_3, VOTE_4,
+            VOTE_5, VOTE_6, VOTE_7, VOTE_8);
 
 
     public static void assertMatch(Vote actual, Vote expected) {

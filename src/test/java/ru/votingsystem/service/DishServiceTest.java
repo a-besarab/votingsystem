@@ -2,7 +2,7 @@ package ru.votingsystem.service;
 
 import org.junit.Test;
 
-public class DishServiceTest {
+public class DishServiceTest extends AbstractServiceTest {
 
     @Test
     public void get() {

@@ -31,10 +31,21 @@ public class Vote extends AbstractBaseEntity {
     public Vote() {
     }
 
+    public Vote(int id, LocalDate date, User user, Restaurant restaurant) {
+        super(id);
+        this.date = date;
+        this.user = user;
+        this.restaurant = restaurant;
+    }
+
     public Vote(LocalDate date, User user, Restaurant restaurant) {
         this.date = date;
         this.user = user;
         this.restaurant = restaurant;
+    }
+
+    public Vote(LocalDate date) {
+        this.date = date;
     }
 
     public void setDate(LocalDate date) {
