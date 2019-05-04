@@ -22,13 +22,13 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void delete() {
-        service.delete(100000);
+        service.delete(USER_ID);
         assertMatch(service.getAll(), ADMIN);
     }
 
     @Test
     public void get() {
-        User user = service.get(100000);
+        User user = service.get(USER_ID);
         assertMatch(user, USER);
     }
 
@@ -45,9 +45,9 @@ public class UserServiceTest extends AbstractServiceTest {
 
     @Test
     public void update() {
-        User modUser = service.get(100000);
+        User modUser = service.get(USER_ID);
         modUser.setName("mod_user");
         service.update(modUser);
-        assertMatch(service.get(100000), modUser);
+        assertMatch(service.get(USER_ID), modUser);
     }
 }

@@ -8,8 +8,8 @@ import ru.votingsystem.repository.DishRepository;
 import ru.votingsystem.repository.RestaurantRepository;
 import ru.votingsystem.util.exception.NotFoundException;
 
-import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -27,9 +27,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant getWithDailyDishes(int restaurantId) throws NotFoundException {
-        Restaurant restaurant = restaurantRepository.getOne(restaurantId);
-        List<Dish> todayMenu = dishRepository.getByDayAndRestaurantId(restaurantId, LocalDate.now());
-        restaurant.setDishes(todayMenu);
+        Restaurant restaurant = restaurantRepository.findById(restaurantId).orElse(null);
+        List<Dish> todayMenu = dishRepository.getDailyWithRestaurant();
+        Objects.requireNonNull(restaurant).setDishes(todayMenu);
         return restaurant;
     }
 
@@ -45,7 +45,11 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant createOrUpdate(Restaurant restaurant) {
-        //TODO
         return restaurantRepository.save(restaurant);
+    }
+
+    @Override
+    public Restaurant get(int restaurant1Id) {
+        return restaurantRepository.findById(restaurant1Id).orElse(null);
     }
 }

@@ -1,7 +1,5 @@
 package ru.votingsystem.service;
 
-import ru.votingsystem.model.Restaurant;
-import ru.votingsystem.model.User;
 import ru.votingsystem.model.Vote;
 import ru.votingsystem.util.exception.NotFoundException;
 
@@ -12,7 +10,7 @@ public interface VoteService {
 
     void delete(int id) throws NotFoundException;
 
-    Vote save(Vote vote, int userId, int restaurantId);
+    Vote createOrUpdate(Vote vote, int userId, int restaurantId);
 
     Vote get(int id) throws NotFoundException;
 

@@ -19,16 +19,19 @@ public class RestaurantTestData {
 
 
     public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT1_ID, "tuesday",
-            "address_tuesday", "+7222");
+            "address_tuesday", "7222");
     public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT2_ID, "wednesday",
-            "address_wednesday", "+7333");
+            "address_wednesday", "7333");
     public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT3_ID, "thursday",
-            "address_thursday", "+7444");
+            "address_thursday", "7444");
     public static final Restaurant RESTAURANT_4 = new Restaurant(RESTAURANT4_ID, "friday",
-            "address_friday", "+7555");
+            "address_friday", "7555");
 
-    private static final List<Restaurant> ALL_RESTAURANTS = Arrays.asList(RESTAURANT_1, RESTAURANT_2,
-            RESTAURANT_3, RESTAURANT_4);
+    public static final List<Restaurant> ALL_RESTAURANTS = Arrays.asList(RESTAURANT_4, RESTAURANT_3,
+            RESTAURANT_1, RESTAURANT_2);
+
+    public static final Restaurant NEW_RESTAURANT = new Restaurant(100030, "newRestaurant",
+            "new_address", "7666");
 
     public static void assertMatch(Restaurant actual, Restaurant expected) {
         assertThat(actual).isEqualToIgnoringGivenFields(expected, "dishes", "votes");

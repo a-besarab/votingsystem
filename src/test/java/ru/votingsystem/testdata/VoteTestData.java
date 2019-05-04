@@ -22,7 +22,7 @@ public class VoteTestData {
     public static final int VOTE6_ID = START_SEQ + 27;
     public static final int VOTE7_ID = START_SEQ + 28;
     public static final int VOTE8_ID = START_SEQ + 29;
-    public static final int NEW_VOTE_ID = START_SEQ + 50;
+    public static final int NEW_VOTE_ID = START_SEQ + 30;
 
 
     public static final Vote VOTE_1 = new Vote(VOTE1_ID, LocalDate.parse("2019-04-08"), USER, RESTAURANT_1);

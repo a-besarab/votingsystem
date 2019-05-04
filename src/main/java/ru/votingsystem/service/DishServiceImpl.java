@@ -6,7 +6,6 @@ import ru.votingsystem.model.Dish;
 import ru.votingsystem.repository.DishRepository;
 import ru.votingsystem.util.exception.NotFoundException;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -23,6 +22,11 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
+    public Dish get(int dishId, int restaurantId) throws NotFoundException {
+        return dishRepository.getByIdAndRestaurantId(dishId, restaurantId);
+    }
+
+    @Override
     public List<Dish> getAll(int restaurantId) {
         return dishRepository.getAllByRestaurantId(restaurantId);
     }
@@ -30,11 +34,6 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<Dish> getDailyWithRestaurant() {
         return dishRepository.getDailyWithRestaurant();
-    }
-
-    @Override
-    public List<Dish> getByDayAndRestaurantId(int restaurantId, LocalDate localDate) {
-        return dishRepository.getByDayAndRestaurantId(restaurantId, localDate);
     }
 
     @Override

@@ -14,4 +14,6 @@ public interface RestaurantService {
     void delete(int restaurantId) throws NotFoundException;
 
     Restaurant createOrUpdate(Restaurant restaurant);
+
+    Restaurant get(int restaurant1Id);
 }

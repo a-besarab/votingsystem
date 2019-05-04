@@ -2,8 +2,6 @@ package ru.votingsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.votingsystem.model.Restaurant;
-import ru.votingsystem.model.User;
 import ru.votingsystem.model.Vote;
 import ru.votingsystem.repository.VoteRepository;
 import ru.votingsystem.util.exception.NotFoundException;
@@ -32,8 +30,8 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public Vote save(Vote vote, int userId, int restaurantId) {
-        vote.setRestaurant(restaurantService.getWithDailyDishes(restaurantId));
+    public Vote createOrUpdate(Vote vote, int userId, int restaurantId) {
+        vote.setRestaurant(restaurantService.get(restaurantId));
         vote.setUser(userService.get(userId));
         return voteRepository.save(vote);
     }

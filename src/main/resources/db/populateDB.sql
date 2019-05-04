@@ -22,10 +22,10 @@ VALUES ('ROLE_USER', 100000),
 -- ('ROLE_USER', 100001);
 
 INSERT INTO restaurants(name, address, phone)
-VALUES ('tuesday', 'address_tuesday', +7222),
-       ('wednesday', 'address_wednesday', +7333),
-       ('thursday', 'address_thursday', +7444),
-       ('friday', 'address_friday', +7555);
+VALUES ('tuesday', 'address_tuesday', 7222),
+       ('wednesday', 'address_wednesday', 7333),
+       ('thursday', 'address_thursday', 7444),
+       ('friday', 'address_friday', 7555);
 -- tuesday 100002
 -- wednesday 100003
 -- thursday 100004
