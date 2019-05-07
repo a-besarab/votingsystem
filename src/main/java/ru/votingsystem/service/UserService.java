@@ -1,6 +1,7 @@
 package ru.votingsystem.service;
 
 import ru.votingsystem.model.User;
+import ru.votingsystem.to.UserTo;
 import ru.votingsystem.util.exception.NotFoundException;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public interface UserService {
 
     User getByEmail(String email) throws NotFoundException;
 
-    void update(User user);
+    void update(UserTo userTo, int id);
 
     List<User> getAll();
 }

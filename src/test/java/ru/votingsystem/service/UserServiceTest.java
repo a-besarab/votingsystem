@@ -47,7 +47,7 @@ public class UserServiceTest extends AbstractServiceTest {
     public void update() {
         User modUser = service.get(USER_ID);
         modUser.setName("mod_user");
-        service.update(modUser);
+        service.create(modUser);
         assertMatch(service.get(USER_ID), modUser);
     }
 }

@@ -1,0 +1,31 @@
+package ru.votingsystem.util;
+
+import ru.votingsystem.model.Role;
+import ru.votingsystem.model.User;
+import ru.votingsystem.to.UserTo;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class UserUtil {
+
+
+    public static UserTo createNewFromUser(User user) {
+        return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword());
+    }
+
+    public static List<UserTo> createNewFromUser(List<User> userList) {
+        return userList.stream().map(UserUtil::createNewFromUser).collect(Collectors.toList());
+    }
+
+    public static User createNewFromTO(UserTo userTo) {
+        return new User(userTo.getId(), userTo.getName(), userTo.getEmail(), userTo.getPassword(), Role.ROLE_USER);
+    }
+
+    public static User updateFromTo(User user, UserTo userTo) {
+        user.setName(userTo.getName());
+        user.setEmail(userTo.getEmail());
+        user.setPassword(userTo.getPassword());
+        return user;
+    }
+}

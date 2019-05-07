@@ -1,17 +1,13 @@
 package ru.votingsystem.to;
 
-import ru.votingsystem.HasId;
 import ru.votingsystem.model.Dish;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 
-public class RestaurantTo implements HasId {
-
-    @NotBlank
-    @Size(min = 2, max = 100)
-    private Integer id;
+public class RestaurantTo extends BaseTo implements Serializable {
 
     @NotBlank
     @Size(min = 2, max = 100)
@@ -31,15 +27,11 @@ public class RestaurantTo implements HasId {
     }
 
     public RestaurantTo(Integer id, String name, String phone, String address, List<Dish> menu) {
-        this.id = id;
+        super(id);
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.menu = menu;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public void setName(String name) {
@@ -58,10 +50,6 @@ public class RestaurantTo implements HasId {
         this.menu = menu;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
@@ -76,5 +64,15 @@ public class RestaurantTo implements HasId {
 
     public List<Dish> getMenu() {
         return menu;
+    }
+
+    @Override
+    public String toString() {
+        return "RestaurantTo{" +
+                "name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", menu=" + menu +
+                '}';
     }
 }

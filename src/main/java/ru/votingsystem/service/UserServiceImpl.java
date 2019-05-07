@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.votingsystem.model.User;
 import ru.votingsystem.repository.UserRepository;
+import ru.votingsystem.to.UserTo;
+import ru.votingsystem.util.UserUtil;
 import ru.votingsystem.util.exception.NotFoundException;
 
 import java.util.List;
@@ -54,8 +56,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User user) {
-        Assert.notNull(user, "user must not be null");
-        checkNotFoundWithId(repository.save(user), user.getId());
+    public void update(UserTo userTo, int id) {
+        Assert.notNull(userTo, "user must not be null");
+        User user = get(id);
+        repository.save(UserUtil.updateFromTo(user, userTo));
     }
 }
