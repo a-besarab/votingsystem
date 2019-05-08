@@ -2,6 +2,7 @@ package ru.votingsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import ru.votingsystem.model.Dish;
 import ru.votingsystem.repository.DishRepository;
 import ru.votingsystem.util.exception.NotFoundException;
@@ -43,10 +44,8 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Dish createOrUpdate(Dish dish, int restaurantId) {
-        //TODO check Not Null
-        if (dish.isNew()) {
-            dish.setRestaurant(restaurantService.getWithDailyDishes(restaurantId));
-        }
+        Assert.notNull(dish, "dish must not be null");
+        dish.setRestaurant(restaurantService.get(restaurantId));
         return dishRepository.save(dish);
     }
 }

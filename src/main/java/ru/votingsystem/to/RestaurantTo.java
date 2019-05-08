@@ -21,17 +21,17 @@ public class RestaurantTo extends BaseTo implements Serializable {
     @Size(min = 2, max = 100)
     private String address;
 
-    private List<Dish> menu;
+    private List<Dish> dishes;
 
     public RestaurantTo() {
     }
 
-    public RestaurantTo(Integer id, String name, String phone, String address, List<Dish> menu) {
+    public RestaurantTo(Integer id, String name, String phone, String address, List<Dish> dishes) {
         super(id);
         this.name = name;
         this.phone = phone;
         this.address = address;
-        this.menu = menu;
+        this.dishes = dishes;
     }
 
     public void setName(String name) {
@@ -46,8 +46,8 @@ public class RestaurantTo extends BaseTo implements Serializable {
         this.address = address;
     }
 
-    public void setMenu(List<Dish> menu) {
-        this.menu = menu;
+    public void setDishes(List<Dish> dishes) {
+        this.dishes = dishes;
     }
 
     public String getName() {
@@ -62,8 +62,8 @@ public class RestaurantTo extends BaseTo implements Serializable {
         return address;
     }
 
-    public List<Dish> getMenu() {
-        return menu;
+    public List<Dish> getDishes() {
+        return dishes;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class RestaurantTo extends BaseTo implements Serializable {
                 "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
-                ", menu=" + menu +
+                ", dishes=" + dishes +
                 '}';
     }
 }

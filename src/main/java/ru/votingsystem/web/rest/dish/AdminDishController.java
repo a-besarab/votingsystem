@@ -1,20 +1,19 @@
 package ru.votingsystem.web.rest.dish;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.votingsystem.model.Dish;
 import ru.votingsystem.service.DishService;
 
+import java.net.URI;
 import java.util.List;
 
-import static ru.votingsystem.web.rest.dish.AdminDishController.REST_URL;
-
 @RestController
-@RequestMapping(value = REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = AdminDishController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminDishController {
     static final String REST_URL = "/admin/restaurants/{restaurantId}/dishes";
     private final DishService dishService;
@@ -33,5 +32,38 @@ public class AdminDishController {
     public Dish get(@PathVariable("restaurantId") int restaurantId,
                     @PathVariable("dishId") int dishId) {
         return dishService.get(dishId, restaurantId);
+    }
+
+    @GetMapping("/today")
+    public List<Dish> getDailyWithRestaurant() {
+        return dishService.getDailyWithRestaurant();
+    }
+
+    @DeleteMapping("/{dishId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("restaurantId") int restaurantId,
+                       @PathVariable("dishId") int dishId) {
+        dishService.delete(dishId, restaurantId);
+    }
+
+    @PutMapping(value = "/{dishId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@PathVariable("restaurantId") int restaurantId,
+                       @PathVariable("dishId") int dishId, @RequestBody Dish dish) throws IllegalAccessException {
+        if (dish.isNew()) {
+            dish.setId(dishId);
+        } else if (dish.getId() != dishId) {
+            throw new IllegalAccessException("Id ambiguous");
+        }
+        dishService.createOrUpdate(dish, restaurantId);
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dish> create(@PathVariable("restaurantId") int restaurantId,
+                                       @RequestBody Dish dish) {
+        Dish created = dishService.createOrUpdate(dish, restaurantId);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{dishId}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 }

@@ -29,7 +29,8 @@ public class Restaurant extends AbstractNamedEntity {
     public Restaurant() {
     }
 
-    public Restaurant(String address, String phone) {
+    public Restaurant(String name, String address, String phone) {
+        super(name);
         this.address = address;
         this.phone = phone;
     }

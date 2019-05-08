@@ -16,4 +16,16 @@ public class RestaurantUtil {
     public static List<RestaurantTo> createNewFromRestaurant(List<Restaurant> restaurantList) {
         return restaurantList.stream().map(RestaurantUtil::createNewFromRestaurant).collect(Collectors.toList());
     }
+
+    public static Restaurant createNewFromTo(RestaurantTo restaurantTo) {
+        return new Restaurant(restaurantTo.getName(),
+                restaurantTo.getAddress(), restaurantTo.getPhone());
+    }
+
+    public static Restaurant updateNewFromTo(Restaurant restaurant, RestaurantTo restaurantTo) {
+        restaurant.setName(restaurantTo.getName());
+        restaurant.setAddress(restaurantTo.getAddress());
+        restaurant.setPhone(restaurantTo.getPhone());
+        return restaurant;
+    }
 }

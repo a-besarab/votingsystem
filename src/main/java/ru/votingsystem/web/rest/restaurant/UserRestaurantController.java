@@ -12,10 +12,9 @@ import ru.votingsystem.to.RestaurantTo;
 import java.util.List;
 
 import static ru.votingsystem.util.RestaurantUtil.createNewFromRestaurant;
-import static ru.votingsystem.web.rest.restaurant.UserRestaurantController.REST_URL;
 
 @RestController
-@RequestMapping(value = REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = UserRestaurantController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserRestaurantController {
 
     static final String REST_URL = "/restaurants";
@@ -26,13 +25,12 @@ public class UserRestaurantController {
         this.restaurantService = restaurantService;
     }
 
-
-    @GetMapping
-    public List<RestaurantTo> getAll() {
-        return createNewFromRestaurant(restaurantService.getAll());
+    @GetMapping("/today")
+    public List<RestaurantTo> getWithDailyDishes() {
+        return restaurantService.getWithDailyDishes();
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}")
     public RestaurantTo get(@PathVariable("id") int id) {
         return createNewFromRestaurant(restaurantService.get(id));
     }
