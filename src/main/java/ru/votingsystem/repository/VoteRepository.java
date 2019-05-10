@@ -24,9 +24,7 @@ public interface VoteRepository extends JpaRepository<Vote, Integer> {
     @Transactional
     Vote save(Vote vote);
 
+    Vote findByUserIdAndDate(int userId, LocalDate localDate);
+
     List<Vote> getAllByDate(LocalDate localDate);
-
-    List<Vote> getAllByRestaurantId(int restaurantId);
-
-    List<Vote> getAllByUserId(int userId);
 }

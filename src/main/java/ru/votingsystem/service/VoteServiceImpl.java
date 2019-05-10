@@ -37,23 +37,23 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public Vote get(int id) {
-        return voteRepository.findById(id).orElseThrow(() ->
-                new NotFoundException("Not found vote with id: " + id));
+    public Vote get(int voteId) {
+        return voteRepository.findById(voteId).orElseThrow(() ->
+                new NotFoundException("Not found vote with id: " + voteId));
     }
 
     @Override
-    public List<Vote> getAllByDate(LocalDate localDate) {
-        return voteRepository.getAllByDate(localDate);
+    public Vote getTodayByUserId(int userId) {
+        return voteRepository.findByUserIdAndDate(userId, LocalDate.now());
     }
 
     @Override
-    public List<Vote> getAllByRestaurantId(int restaurantId) {
-        return voteRepository.getAllByRestaurantId(restaurantId);
+    public List<Vote> getAll() {
+        return voteRepository.findAll();
     }
 
     @Override
-    public List<Vote> getAllByUserId(int userId) {
-        return voteRepository.getAllByUserId(userId);
+    public List<Vote> getTodayVotes() {
+        return voteRepository.getAllByDate(LocalDate.now());
     }
 }
