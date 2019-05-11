@@ -14,6 +14,7 @@ import java.util.*;
 
 import static ru.votingsystem.util.RestaurantUtil.createNewFromRestaurant;
 import static ru.votingsystem.util.RestaurantUtil.updateNewFromTo;
+import static ru.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -66,7 +67,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void delete(int restaurantId) throws NotFoundException {
-        restaurantRepository.delete(restaurantId);
+        checkNotFoundWithId(restaurantRepository.delete(restaurantId) != 0, restaurantId);
     }
 
     @Override
@@ -82,6 +83,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant get(int restaurant1Id) {
-        return restaurantRepository.findById(restaurant1Id).orElse(null);
+        return checkNotFoundWithId(restaurantRepository.findById(restaurant1Id).orElse(null), restaurant1Id);
     }
 }

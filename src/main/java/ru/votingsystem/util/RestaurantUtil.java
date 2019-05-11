@@ -17,8 +17,13 @@ public class RestaurantUtil {
         return restaurantList.stream().map(RestaurantUtil::createNewFromRestaurant).collect(Collectors.toList());
     }
 
+    public static List<Restaurant> createNewFromTo(List<RestaurantTo> restaurantListTo) {
+        return restaurantListTo.stream().map(RestaurantUtil::createNewFromTo).collect(Collectors.toList());
+    }
+
+    //todo try rest without id
     public static Restaurant createNewFromTo(RestaurantTo restaurantTo) {
-        return new Restaurant(restaurantTo.getName(),
+        return new Restaurant(restaurantTo.getId(), restaurantTo.getName(),
                 restaurantTo.getAddress(), restaurantTo.getPhone());
     }
 
