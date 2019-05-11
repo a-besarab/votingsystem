@@ -41,10 +41,10 @@ public class DishTestData {
     public static final Dish CHIPS_3 = new Dish(CHIPS3_ID, "chips3", 650, RESTAURANT_1, LocalDate.parse("2019-04-10"));
     public static final Dish COFFEE_3 = new Dish(COFFEE3_ID, "coffee3", 750, RESTAURANT_2, LocalDate.parse("2019-04-10"));
     public static final Dish CAKE_3 = new Dish(CAKE3_ID, "cake3", 350, RESTAURANT_2, LocalDate.parse("2019-04-10"));
-    public static final Dish COLA_4 = new Dish(COLA4_ID, "cola4", 336, RESTAURANT_3, LocalDate.parse("2019-04-11"));
-    public static final Dish CHIPS_4 = new Dish(CHIPS4_ID, "chips4", 250, RESTAURANT_3, LocalDate.parse("2019-04-11"));
-    public static final Dish COFFEE_4 = new Dish(COFFEE4_ID, "coffee4", 960, RESTAURANT_4, LocalDate.parse("2019-04-11"));
-    public static final Dish CAKE_4 = new Dish(CAKE4_ID, "cake4", 660, RESTAURANT_4, LocalDate.parse("2019-04-11"));
+    public static final Dish COLA_4 = new Dish(COLA4_ID, "cola4", 336, RESTAURANT_3, LocalDate.now());
+    public static final Dish CHIPS_4 = new Dish(CHIPS4_ID, "chips4", 250, RESTAURANT_3, LocalDate.now());
+    public static final Dish COFFEE_4 = new Dish(COFFEE4_ID, "coffee4", 960, RESTAURANT_4, LocalDate.now());
+    public static final Dish CAKE_4 = new Dish(CAKE4_ID, "cake4", 660, RESTAURANT_4, LocalDate.now());
 
     public static final Dish NEW_DISH = new Dish(100030, "newCola", 600, RESTAURANT_1, LocalDate.parse("2019-04-08"));
     public static final Dish TODAY_DISH = new Dish(100030, "todayCola", 700, RESTAURANT_1, LocalDate.now());
@@ -62,5 +62,4 @@ public class DishTestData {
     public static void assertMatch(Iterable<Dish> actual, Iterable<Dish> expected) {
         assertThat(actual).usingElementComparatorIgnoringFields("restaurant").isEqualTo(expected);
     }
-
 }

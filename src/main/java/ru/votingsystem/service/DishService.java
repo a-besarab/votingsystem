@@ -13,6 +13,8 @@ public interface DishService {
 
     List<Dish> getDailyWithRestaurant();
 
+    List<Dish> getDailyByRestaurantId(int restaurantId);
+
     void delete(int dishId, int restaurantId) throws NotFoundException;
 
     Dish createOrUpdate(Dish dish, int restaurantId);

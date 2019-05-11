@@ -9,6 +9,8 @@ import ru.votingsystem.util.exception.NotFoundException;
 
 import java.util.List;
 
+import static ru.votingsystem.util.ValidationUtil.checkNotFoundWithId;
+
 @Service
 public class DishServiceImpl implements DishService {
 
@@ -24,12 +26,17 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Dish get(int dishId, int restaurantId) throws NotFoundException {
-        return dishRepository.getByIdAndRestaurantId(dishId, restaurantId);
+        return checkNotFoundWithId(dishRepository.getByIdAndRestaurantId(dishId, restaurantId), dishId);
     }
 
     @Override
     public List<Dish> getAll(int restaurantId) {
         return dishRepository.getAllByRestaurantId(restaurantId);
+    }
+
+    @Override
+    public List<Dish> getDailyByRestaurantId(int restaurantId) {
+        return dishRepository.getDailyByRestaurantId(restaurantId);
     }
 
     @Override
@@ -39,7 +46,7 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public void delete(int dishId, int restaurantId) throws NotFoundException {
-        dishRepository.delete(dishId, restaurantId);
+        checkNotFoundWithId(dishRepository.delete(dishId, restaurantId) != 0, dishId);
     }
 
     @Override
