@@ -18,47 +18,47 @@ import static ru.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository repository) {
-        this.repository = repository;
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @CacheEvict(value = "users", allEntries = true)
     @Override
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
-        return repository.save(user);
+        return userRepository.save(user);
     }
 
     @CacheEvict(value = "users", allEntries = true)
     @Override
-    public void delete(int id) throws NotFoundException {
-        checkNotFoundWithId(repository.delete(id), id);
+    public void delete(int userId) throws NotFoundException {
+        checkNotFoundWithId(userRepository.delete(userId) != 0, userId);
     }
 
     @Override
-    public User get(int id) throws NotFoundException {
-        return checkNotFoundWithId(repository.findById(id).orElseThrow(() ->
-                new NotFoundException("Not found user with id = " + id)), id);
+    public User get(int userId) throws NotFoundException {
+        return checkNotFoundWithId(userRepository.findById(userId).orElseThrow(() ->
+                new NotFoundException("Not found user with id = " + userId)), userId);
     }
 
     @Override
     public User getByEmail(String email) throws NotFoundException {
         Assert.notNull(email, "email must not be null");
-        return checkNotFound(repository.getByEmail(email), "email=" + email);
+        return checkNotFound(userRepository.getByEmail(email), "email=" + email);
     }
 
     @Override
     public List<User> getAll() {
-        return repository.getAll();
+        return userRepository.getAll();
     }
 
     @Override
-    public void update(UserTo userTo, int id) {
+    public void update(UserTo userTo, int userId) {
         Assert.notNull(userTo, "user must not be null");
-        User user = get(id);
-        repository.save(UserUtil.updateFromTo(user, userTo));
+        User user = get(userId);
+        userRepository.save(UserUtil.updateFromTo(user, userTo));
     }
 }

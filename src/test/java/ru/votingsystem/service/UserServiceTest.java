@@ -3,6 +3,7 @@ package ru.votingsystem.service;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.votingsystem.model.User;
+import ru.votingsystem.util.exception.NotFoundException;
 
 import java.util.List;
 
@@ -12,42 +13,52 @@ import static ru.votingsystem.testdata.UserTestData.*;
 public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
-    UserService service;
+    UserService userService;
 
     @Test
     public void create() {
-        service.create(NEW_USER);
-        assertMatch(service.getByEmail("mail@gmail.com"), NEW_USER);
+        userService.create(NEW_USER);
+        assertMatch(userService.getByEmail("mail@gmail.com"), NEW_USER);
     }
 
     @Test
     public void delete() {
-        service.delete(USER_ID);
-        assertMatch(service.getAll(), ADMIN);
+        userService.delete(USER_ID);
+        assertMatch(userService.getAll(), ADMIN);
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void deleteNotFound() {
+        userService.delete(99999);
     }
 
     @Test
     public void get() {
-        User user = service.get(USER_ID);
+        User user = userService.get(USER_ID);
         assertMatch(user, USER);
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getNotFound() {
+        userService.get(99999);
     }
 
     @Test
     public void getByEmail() {
-        assertMatch(service.getByEmail("user@yandex.ru"), USER);
+        assertMatch(userService.getByEmail("user@yandex.ru"), USER);
     }
 
     @Test
     public void getAll() {
-        List<User> users = service.getAll();
+        List<User> users = userService.getAll();
         assertMatch(users, ALL_USERS);
     }
 
     @Test
     public void update() {
-        User modUser = service.get(USER_ID);
+        User modUser = userService.get(USER_ID);
         modUser.setName("mod_user");
-        service.create(modUser);
-        assertMatch(service.get(USER_ID), modUser);
+        userService.create(modUser);
+        assertMatch(userService.get(USER_ID), modUser);
     }
 }
