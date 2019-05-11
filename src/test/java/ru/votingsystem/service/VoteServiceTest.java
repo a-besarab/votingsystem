@@ -13,10 +13,15 @@ public class VoteServiceTest extends AbstractServiceTest {
     @Autowired
     VoteService voteService;
 
-    @Test(expected = NotFoundException.class)
+    @Test
     public void delete() {
         voteService.delete(VOTE1_ID);
-        voteService.get(VOTE1_ID);
+        assertMatch(voteService.getAll(), VOTE_2, VOTE_3, VOTE_4, VOTE_5, VOTE_6, VOTE_7, VOTE_8);
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void deleteNotFound() {
+        voteService.delete(99999);
     }
 
     @Test
@@ -29,19 +34,24 @@ public class VoteServiceTest extends AbstractServiceTest {
     public void get() {
         assertMatch(VOTE_1, voteService.get(VOTE1_ID));
     }
-//
-//    @Test
-//    public void getAllByDate() {
-//        assertMatch(Arrays.asList(VOTE_1, VOTE_2), voteService.getAllByDate(LocalDate.parse("2019-04-08")));
-//    }
-//
-//    @Test
-//    public void getAllByRestaurantId() {
-//        assertMatch(Arrays.asList(VOTE_1, VOTE_2), voteService.getAllByRestaurantId(RESTAURANT1_ID));
-//    }
-//
-//    @Test
-//    public void getAllByUserId() {
-//        assertMatch(Arrays.asList(VOTE_1, VOTE_3, VOTE_5, VOTE_7), voteService.getAllByUserId(USER_ID));
-//    }
+
+    @Test(expected = NotFoundException.class)
+    public void getNotFound() {
+        voteService.get(99999);
+    }
+
+    @Test
+    public void getTodayByUserId() {
+        assertMatch(VOTE_7, voteService.getTodayByUserId(USER_ID));
+    }
+
+    @Test
+    public void getAllByRestaurantId() {
+        assertMatch(voteService.getTodayVotes(),VOTE_7, VOTE_8);
+    }
+
+    @Test
+    public void getAll() {
+        assertMatch(ALL_VOTES, voteService.getAll());
+    }
 }

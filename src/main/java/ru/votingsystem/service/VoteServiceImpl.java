@@ -9,6 +9,8 @@ import ru.votingsystem.util.exception.NotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
+import static ru.votingsystem.util.ValidationUtil.checkNotFoundWithId;
+
 @Service
 public class VoteServiceImpl implements VoteService {
 
@@ -25,8 +27,8 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public void delete(int id) throws NotFoundException {
-        voteRepository.delete(id);
+    public void delete(int voteId) throws NotFoundException {
+        checkNotFoundWithId(voteRepository.delete(voteId) != 0, voteId);
     }
 
     @Override
@@ -38,8 +40,8 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public Vote get(int voteId) {
-        return voteRepository.findById(voteId).orElseThrow(() ->
-                new NotFoundException("Not found vote with id: " + voteId));
+        return checkNotFoundWithId(voteRepository.findById(voteId).orElseThrow(() ->
+                new NotFoundException("Not found vote with id = " + voteId)), voteId);
     }
 
     @Override

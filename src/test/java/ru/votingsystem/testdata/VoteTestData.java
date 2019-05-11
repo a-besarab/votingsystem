@@ -31,8 +31,8 @@ public class VoteTestData {
     public static final Vote VOTE_4 = new Vote(VOTE4_ID, LocalDate.parse("2019-04-09"), ADMIN, RESTAURANT_4);
     public static final Vote VOTE_5 = new Vote(VOTE5_ID, LocalDate.parse("2019-04-10"), USER, RESTAURANT_2);
     public static final Vote VOTE_6 = new Vote(VOTE6_ID, LocalDate.parse("2019-04-10"), ADMIN, RESTAURANT_2);
-    public static final Vote VOTE_7 = new Vote(VOTE7_ID, LocalDate.parse("2019-04-11"), USER, RESTAURANT_3);
-    public static final Vote VOTE_8 = new Vote(VOTE8_ID, LocalDate.parse("2019-04-11"), ADMIN, RESTAURANT_4);
+    public static final Vote VOTE_7 = new Vote(VOTE7_ID, LocalDate.now(), USER, RESTAURANT_3);
+    public static final Vote VOTE_8 = new Vote(VOTE8_ID, LocalDate.now(), ADMIN, RESTAURANT_4);
     public static final Vote NEW_VOTE = new Vote(LocalDate.parse("2019-04-12"));
 
 
