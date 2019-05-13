@@ -21,10 +21,16 @@ public class RestaurantUtil {
         return restaurantListTo.stream().map(RestaurantUtil::createNewFromTo).collect(Collectors.toList());
     }
 
-    //todo try rest without id
     public static Restaurant createNewFromTo(RestaurantTo restaurantTo) {
-        return new Restaurant(restaurantTo.getId(), restaurantTo.getName(),
-                restaurantTo.getAddress(), restaurantTo.getPhone());
+        Restaurant restaurant;
+        if (restaurantTo.getId() == null) {
+            restaurant = new Restaurant(restaurantTo.getName(),
+                    restaurantTo.getAddress(), restaurantTo.getPhone());
+        } else {
+            restaurant = new Restaurant(restaurantTo.getId(), restaurantTo.getName(),
+                    restaurantTo.getAddress(), restaurantTo.getPhone());
+        }
+        return restaurant;
     }
 
     public static Restaurant updateNewFromTo(Restaurant restaurant, RestaurantTo restaurantTo) {

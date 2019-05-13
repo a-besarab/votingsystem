@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class VoteUtil {
-    private static final LocalTime TIME = LocalTime.of(23, 30);
+    private static final LocalTime TIME = LocalTime.of(11,0);
 
     public static void checkTime(LocalTime localTime) {
         if (localTime.isAfter(TIME)) {
