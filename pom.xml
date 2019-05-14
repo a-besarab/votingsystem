@@ -15,6 +15,7 @@
         <!-- spring -->
         <spring-data-jpa.version>2.1.7.RELEASE</spring-data-jpa.version>
         <spring-webmvc.version>5.1.7.RELEASE</spring-webmvc.version>
+        <spring-security.version>5.1.5.RELEASE</spring-security.version>
         <!-- Hibernate -->
         <hibernate.version>5.4.1.Final</hibernate.version>
         <hibernate-validator.version>6.0.15.Final</hibernate-validator.version>
@@ -166,6 +167,20 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jcache</artifactId>
             <version>${hibernate.version}</version>
+        </dependency>
+
+
+        <!-- spring-security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security.version}</version>
         </dependency>
 
 
