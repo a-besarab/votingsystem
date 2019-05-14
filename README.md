@@ -1,3 +1,5 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ba7049ca4b6b4fb08a8623195f389714)](https://www.codacy.com/app/a-besarab/votingsystem?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=a-besarab/votingsystem&amp;utm_campaign=Badge_Grade)
+
 Design and implement a REST API using Hibernate/Spring/SpringMVC (or Spring-Boot) without frontend.
 
 The task is:

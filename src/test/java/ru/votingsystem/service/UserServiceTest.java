@@ -13,7 +13,7 @@ import static ru.votingsystem.testdata.UserTestData.*;
 public class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Test
     public void create() {

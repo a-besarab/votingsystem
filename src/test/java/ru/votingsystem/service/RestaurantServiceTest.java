@@ -15,7 +15,7 @@ import static ru.votingsystem.util.RestaurantUtil.createNewFromTo;
 public class RestaurantServiceTest extends AbstractServiceTest {
 
     @Autowired
-    RestaurantService restaurantService;
+    private RestaurantService restaurantService;
 
     @Test
     public void get() {

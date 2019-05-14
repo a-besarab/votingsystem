@@ -15,7 +15,7 @@ import static ru.votingsystem.testdata.RestaurantTestData.RESTAURANT4_ID;
 public class DishServiceTest extends AbstractServiceTest {
 
     @Autowired
-    DishService dishService;
+    private DishService dishService;
 
     @Test
     public void get() {

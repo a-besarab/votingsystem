@@ -11,7 +11,7 @@ import static ru.votingsystem.testdata.VoteTestData.*;
 public class VoteServiceTest extends AbstractServiceTest {
 
     @Autowired
-    VoteService voteService;
+    private VoteService voteService;
 
     @Test
     public void delete() {
