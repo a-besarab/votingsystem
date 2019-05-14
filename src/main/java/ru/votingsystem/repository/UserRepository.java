@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Transactional
+@Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Override

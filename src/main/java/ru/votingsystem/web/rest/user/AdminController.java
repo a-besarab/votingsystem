@@ -11,6 +11,7 @@ import ru.votingsystem.service.UserService;
 import ru.votingsystem.to.UserTo;
 import ru.votingsystem.util.UserUtil;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -44,15 +45,15 @@ public class AdminController {
         userService.delete(userId);
     }
 
-    @PutMapping(value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@RequestBody UserTo userTo, @PathVariable int userId) {
+    public void update(@Valid @RequestBody UserTo userTo) {
         int id = userTo.getId();
         userService.update(userTo, id);
     }
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody UserTo userTo) {
+    public ResponseEntity<User> create(@Valid @RequestBody UserTo userTo) {
         User user = UserUtil.createNewFromTO(userTo);
         User created = userService.create(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()

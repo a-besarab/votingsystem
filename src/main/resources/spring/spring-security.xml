@@ -16,16 +16,13 @@
         <intercept-url pattern="/rest/register" access="isAnonymous()"/>
         <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <!--        <form-login/>-->
+        <!--        <logout/>-->
         <csrf disabled="true"/>
     </http>
 
 
     <authentication-manager>
-        <!--        <authentication-provider>-->
-        <!--            <user-service>-->
-        <!--                <user name="user@yandex.ru" password="password" authorities="ROLE_USER"/>-->
-        <!--                <user name="admin@yandex.ru" password="password" authorities="ROLE_ADMIN"/>-->
-        <!--            </user-service>-->
         <authentication-provider user-service-ref="userService">
             <password-encoder ref="passwordEncoder"/>
         </authentication-provider>

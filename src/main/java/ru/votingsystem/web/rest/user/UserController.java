@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.votingsystem.AuthorizedUser;
 import ru.votingsystem.service.UserService;
 import ru.votingsystem.to.UserTo;
 
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 import static ru.votingsystem.util.UserUtil.createNewFromUser;
 
 @RestController
@@ -21,21 +23,23 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{userId}")
-    public UserTo get(@PathVariable int userId) {
+    @GetMapping
+    public UserTo get() {
+        int userId = ((AuthorizedUser) getContext().getAuthentication().getPrincipal()).getId();
         return createNewFromUser(userService.get(userId));
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int userId) {
+    public void delete() {
+        int userId = ((AuthorizedUser) getContext().getAuthentication().getPrincipal()).getId();
         userService.delete(userId);
     }
 
-    @PutMapping(value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void update(@RequestBody UserTo userTo, @PathVariable int userId) {
-        int id = userTo.getId();
+    public void update(@RequestBody UserTo userTo) {
+        int id = ((AuthorizedUser) getContext().getAuthentication().getPrincipal()).getId();
         userService.update(userTo, id);
     }
 }

@@ -10,6 +10,7 @@ import ru.votingsystem.model.Restaurant;
 import ru.votingsystem.service.RestaurantService;
 import ru.votingsystem.to.RestaurantTo;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -42,12 +43,12 @@ public class AdminRestaurantController {
 
     @PutMapping("/{restaurantId}")
     public void update(@PathVariable int restaurantId,
-                       @RequestBody RestaurantTo restaurantTo) {
+                       @Valid @RequestBody RestaurantTo restaurantTo) {
         restaurantService.update(restaurantTo, restaurantService.get(restaurantId));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> create(@RequestBody RestaurantTo restaurantTo) {
+    public ResponseEntity<Restaurant> create(@Valid @RequestBody RestaurantTo restaurantTo) {
         Restaurant created = restaurantService.create(createNewFromTo(restaurantTo));
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{restaurantId}")

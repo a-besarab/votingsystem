@@ -1,5 +1,7 @@
 package ru.votingsystem.util;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 import ru.votingsystem.model.Role;
 import ru.votingsystem.model.User;
 import ru.votingsystem.to.UserTo;
@@ -9,6 +11,17 @@ import java.util.stream.Collectors;
 
 public class UserUtil {
 
+    public static User prepareToSave(User user, PasswordEncoder passwordEncoder) {
+        String password = user.getPassword();
+        user.setPassword(StringUtils.isEmpty(password) ? password : passwordEncoder.encode(password));
+        user.setEmail(user.getEmail().toLowerCase());
+        return user;
+    }
+
+    public static User prepareToGet(User user) {
+        user.setPassword("{noop}" + user.getPassword());
+        return user;
+    }
 
     public static UserTo createNewFromUser(User user) {
         return new UserTo(user.getId(), user.getName(), user.getEmail(), user.getPassword());

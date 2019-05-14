@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.votingsystem.model.Dish;
 import ru.votingsystem.service.DishService;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class AdminDishController {
 
     @PutMapping(value = "/{dishId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@PathVariable("restaurantId") int restaurantId,
-                       @PathVariable("dishId") int dishId, @RequestBody Dish dish) throws IllegalAccessException {
+                       @PathVariable("dishId") int dishId, @Valid @RequestBody Dish dish) throws IllegalAccessException {
         if (dish.isNew()) {
             dish.setId(dishId);
         } else if (dish.getId() != dishId) {
@@ -59,7 +60,7 @@ public class AdminDishController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dish> create(@PathVariable("restaurantId") int restaurantId,
-                                       @RequestBody Dish dish) {
+                                       @Valid @RequestBody Dish dish) {
         Dish created = dishService.createOrUpdate(dish, restaurantId);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{dishId}")

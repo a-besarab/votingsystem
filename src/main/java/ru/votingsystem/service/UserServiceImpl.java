@@ -1,7 +1,6 @@
 package ru.votingsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,6 +16,8 @@ import ru.votingsystem.util.exception.NotFoundException;
 
 import java.util.List;
 
+import static ru.votingsystem.util.UserUtil.prepareToGet;
+import static ru.votingsystem.util.UserUtil.prepareToSave;
 import static ru.votingsystem.util.ValidationUtil.checkNotFound;
 import static ru.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 
@@ -33,14 +34,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @CacheEvict(value = "users", allEntries = true)
     @Override
     public User create(User user) {
         Assert.notNull(user, "user must not be null");
-        return userRepository.save(user);
+        return userRepository.save(prepareToSave(user, passwordEncoder));
     }
 
-    @CacheEvict(value = "users", allEntries = true)
     @Override
     public void delete(int userId) throws NotFoundException {
         checkNotFoundWithId(userRepository.delete(userId) != 0, userId);
@@ -76,6 +75,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User " + email + " is not found");
         }
+        prepareToGet(user);
         return new AuthorizedUser(user);
     }
 }

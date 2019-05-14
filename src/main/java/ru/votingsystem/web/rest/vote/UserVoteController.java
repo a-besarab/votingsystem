@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.votingsystem.AuthorizedUser;
 import ru.votingsystem.model.Vote;
 import ru.votingsystem.service.VoteService;
 import ru.votingsystem.to.VoteTo;
@@ -13,6 +14,7 @@ import java.net.URI;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 import static ru.votingsystem.util.ValidationUtil.checkNotFoundWithId;
 import static ru.votingsystem.util.VoteUtil.checkTime;
 import static ru.votingsystem.util.VoteUtil.createNewFromVote;
@@ -32,15 +34,17 @@ public class UserVoteController {
 
     @GetMapping
     public VoteTo getToday() {
-        return createNewFromVote(checkNotFoundWithId(voteService.getTodayByUserId(100000), 100000));
+        int userId = ((AuthorizedUser) getContext().getAuthentication().getPrincipal()).getId();
+        return createNewFromVote(checkNotFoundWithId(voteService.getTodayByUserId(userId), userId));
     }
 
     @PostMapping(value = "/{restaurantId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Vote> createOrUpdate(@PathVariable("restaurantId") int restaurantId) {
-        Vote vote = voteService.getTodayByUserId(100000);
+        int userId = ((AuthorizedUser) getContext().getAuthentication().getPrincipal()).getId();
+        Vote vote = voteService.getTodayByUserId(userId);
         if (vote == null) {
             vote = new Vote(LocalDate.now());
-            Vote created = voteService.createOrUpdate(vote, 100000, restaurantId);
+            Vote created = voteService.createOrUpdate(vote, userId, restaurantId);
             URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentRequest()
                     .path("/{restaurantId}")
                     .buildAndExpand(created.getId()).toUri();
@@ -48,7 +52,7 @@ public class UserVoteController {
             return ResponseEntity.created(uriOfNewResource).body(created);
         } else {
             checkTime(LocalTime.now());
-            voteService.createOrUpdate(vote, 100000, restaurantId);
+            voteService.createOrUpdate(vote, userId, restaurantId);
             return ResponseEntity.ok().build();
         }
     }
