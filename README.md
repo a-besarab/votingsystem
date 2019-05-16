@@ -16,7 +16,7 @@ Build a voting system for deciding where to have lunch.
 Each restaurant provides new menu each day.
 
  ## User commands:
- #### Profile commands:
+ ### Profile commands:
   * GET (Get current profile)
   <pre> http://localhost:8080/users</pre>
   * DELETE (Delete current profile)
@@ -28,12 +28,12 @@ Each restaurant provides new menu each day.
      "email": "modemailuser@yandex.ru",
      "password": "password"
   }  </pre>
-#### Restaurant commands:
+### Restaurant commands:
   * GET (Get restaurants with today menu)
   <pre> http://localhost:8080/restaurants/today</pre>
   * GET (Get restaurant by id = 100002)
   <pre> http://localhost:8080/restaurants/100002</pre>
-#### Vote commands:
+### Vote commands:
   * GET (Show personal today vote)
   <pre> http://localhost:8080/votes</pre>
   * POST (Vote for the restaurant by id = 100002)
@@ -41,7 +41,7 @@ Each restaurant provides new menu each day.
 
 ## Admin commands:
 
-#### Profile commands:
+### Profile commands:
   * GET (Get all profiles)
     <pre> http://localhost:8080/admin/users</pre>
   * GET (Get profile by id = 100001)
@@ -63,7 +63,7 @@ Each restaurant provides new menu each day.
     "email": "newuser@gmail.com",
     "password": "password"
     }</pre>
-#### Dish commands:
+### Dish commands:
   * GET (Get all dishes by restaurant id = 100002)
     <pre> http://localhost:8080/admin/restaurants/100002/dishes</pre>
   * GET (Get dish by restaurant id = 100002 and dish id = 100006)
@@ -86,7 +86,7 @@ Each restaurant provides new menu each day.
     "price": 555,
     "date": "2019-05-16"
     }</pre>
-#### Restaurant commands:
+### Restaurant commands:
   * GET (Get all restaurants)
     <pre> http://localhost:8080/admin/restaurants</pre>
   * GET (Get by id = 100002)
@@ -109,7 +109,7 @@ Each restaurant provides new menu each day.
        "phone": "88888888",
        "address": "new address"
     }</pre>  
-#### Vote commands
+### Vote commands
   * GET (Get all votes)
     <pre> http://localhost:8080/admin/votes</pre>
   * GET (Get vote by id = 100022)
